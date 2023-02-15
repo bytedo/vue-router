@@ -8,6 +8,7 @@ import Es from 'esbuild'
 import fs from 'iofs'
 import { resolve } from 'path'
 import { exec } from 'child_process'
+import pkg from './package.json' assert { type: 'json' }
 
 const NPM_URL = 'https://registry.npmmirror.com'
 
@@ -28,26 +29,29 @@ export function execAsync(cmd) {
 }
 
 !(async function () {
-  // let { version, url } = await fetch(
-  //   'https://registry.npmmirror.com/vue-router',
-  //   {
-  //     headers: {
-  //       'content-type': 'application/json',
-  //       accept: 'application/json'
-  //     }
-  //   }
-  // )
-  //   .then(r => r.json())
-  //   .then(r => {
-  //     let v = r['dist-tags'].latest
-  //     let url = r.versions[v].dist.tarball
-  //     return { version: v, url }
-  //   })
-  // let ab = await download(url)
+  let { version, url } = await fetch(
+    'https://registry.npmmirror.com/vue-router',
+    {
+      headers: {
+        'content-type': 'application/json',
+        accept: 'application/json'
+      }
+    }
+  )
+    .then(r => r.json())
+    .then(r => {
+      let v = r['dist-tags'].latest
+      let url = r.versions[v].dist.tarball
+      return { version: v, url }
+    })
+  let ab = await download(url)
 
-  // fs.echo(Buffer.from(ab), './vue-router.tgz')
+  pkg.version = version
 
-  // await execAsync('tar -xzf vue-router.tgz')
+  fs.echo(JSON.stringify(pkg, null, 2), './package.json')
+  fs.echo(Buffer.from(ab), './vue-router.tgz')
+
+  await execAsync('tar -xzf vue-router.tgz')
 
   let code = fs.cat('package/dist/vue-router.esm-browser.js').toString()
 
