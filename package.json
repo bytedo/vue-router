@@ -1,0 +1,18 @@
+{
+  "name": "@bytedo/vue-router",
+  "description": "vue-router去除`@vue/devtools-api`依赖版",
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "start": "node ./update.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bytedo/vue-router.git"
+  },
+  "keywords": [
+    "vue-router",
+    "vue"
+  ],
+  "author": "Yutent <yutent.io@gmail.com>"
+}
