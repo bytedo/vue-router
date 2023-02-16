@@ -1,5 +1,5 @@
 ## vue-router
-vue-router去除`@vue/devtools-api`依赖版。 
+vue-router去除`@vue/devtools-api`依赖版。 且仅保留ESM版本。
 
 
 ### Why me?
