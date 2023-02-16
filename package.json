@@ -3,8 +3,9 @@
   "description": "vue-router去除`@vue/devtools-api`依赖版",
   "version": "4.1.6",
   "type": "module",
+  "main": "dist/vue-router.js",
   "scripts": {
-    "start": "node ./update.js"
+    "build": "node ./update.js"
   },
   "repository": {
     "type": "git",
@@ -14,5 +15,9 @@
     "vue-router",
     "vue"
   ],
+  "devDependencies": {
+    "esbuild":"^0.17.8",
+    "iofs":"^1.5.3"
+  },
   "author": "Yutent <yutent.io@gmail.com>"
 }
